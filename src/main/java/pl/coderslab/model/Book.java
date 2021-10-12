@@ -1,4 +1,4 @@
-package mvc.model;
+package pl.coderslab.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

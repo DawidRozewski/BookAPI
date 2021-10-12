@@ -1,4 +1,4 @@
-package mvc;
+package pl.coderslab;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
