@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "mvc")
+@ComponentScan(basePackages = "pl.coderslab")
 public class AppConfig implements WebMvcConfigurer {
 }
