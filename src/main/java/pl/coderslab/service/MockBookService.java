@@ -1,6 +1,7 @@
 package pl.coderslab.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import pl.coderslab.model.Book;
 
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ public class MockBookService {
         return bookList.stream()
                 .filter(b -> b.getId().equals(id))
                 .findFirst();
+    }
+
+    public void addBook(Book book) {
+        book.setId(nextId++);
+        bookList.add(book);
     }
 
 }

@@ -18,4 +18,11 @@ public class Book {
     private String publisher;
     private String type;
 
+//    need an empty constructor to allow for Jackson to perform it's deserialization actions correctly.
+    public Book() {
+
+    }
+
+
+
 }

@@ -9,3 +9,16 @@ GET http://localhost:8080/books
 GET http://localhost:8080/books/3
 
 ###
+
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+  "isbn":"34321",
+  "title":"Rusz głową! GO!",
+  "author":"McGavren",
+  "publisher":"Helion",
+  "type":"programming"
+}
+
+###
