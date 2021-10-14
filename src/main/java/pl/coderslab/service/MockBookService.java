@@ -9,10 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MockBookService {
+public class MockBookService implements BookOperations {
     private static Long nextId = 4L;
 
     private List<Book> bookList;
+
     public MockBookService() {
         bookList = new ArrayList<>();
         bookList.add(new Book(1L, "9788324631766", "Thiniking	in	Java", "Bruce	Eckel", "Helion", "programming"));
@@ -22,24 +23,28 @@ public class MockBookService {
                 "programming"));
     }
 
-    public List<Book> getAllBooks() {
+    @Override
+    public List<Book> findAll() {
         return new ArrayList<>(bookList);
     }
 
+    @Override
     public Optional<Book> findById(Long id) {
         return bookList.stream()
                 .filter(b -> b.getId().equals(id))
                 .findFirst();
     }
 
-    public void addBook(Book book) {
+    @Override
+    public void add(Book book) {
         book.setId(nextId++);
         bookList.add(book);
     }
 
-  public void remove(Long id) {
-      if (findById(id).isPresent()) {
-          bookList.removeIf(book -> book.getId().equals(id));
-      }
-  }
+    @Override
+    public void remove(Long id) {
+        if (findById(id).isPresent()) {
+            bookList.removeIf(book -> book.getId().equals(id));
+        }
+    }
 }
