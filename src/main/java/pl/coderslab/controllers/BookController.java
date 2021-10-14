@@ -35,4 +35,10 @@ public class BookController {
     public void addBook(@RequestBody Book book) {
         mockBookService.addBook(book);
     }
-}
+
+    @DeleteMapping("/{id}")
+        public void removeBook(@PathVariable Long id) {
+            mockBookService.removeBook(id);
+        }
+    }
+
