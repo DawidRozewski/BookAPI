@@ -37,8 +37,9 @@ public class MockBookService {
         bookList.add(book);
     }
 
-  public void removeBook(Long id) {
-        bookList.removeIf(book -> book.getId().equals(id));
+  public void remove(Long id) {
+      if (findById(id).isPresent()) {
+          bookList.removeIf(book -> book.getId().equals(id));
+      }
   }
-
 }
