@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
   "isbn":"9999999",
-  "title":"Rusz głową! GO!",
+  "title":"",
   "author":"McGavren",
   "publisher":"Helion",
   "type":"programming"

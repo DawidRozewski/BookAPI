@@ -1,5 +1,7 @@
 package pl.coderslab.service;
 
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import pl.coderslab.model.Book;
@@ -7,6 +9,7 @@ import pl.coderslab.model.Book;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class MockBookService implements BookOperations {
@@ -39,7 +42,7 @@ public class MockBookService implements BookOperations {
     public void add(Book book) {
         book.setId(nextId++);
         bookList.add(book);
-    }
+        }
 
     @Override
     public void remove(Long id) {
@@ -47,4 +50,7 @@ public class MockBookService implements BookOperations {
             bookList.removeIf(book -> book.getId().equals(id));
         }
     }
+
+
+
 }
