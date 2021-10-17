@@ -44,12 +44,17 @@ public class BookController extends RuntimeException {
             mockBookService.add(book);
         }
     }
-        @DeleteMapping("/{id}")
-        public void removeBook (@PathVariable Long id){
-            mockBookService.remove(id);
-        }
 
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable Long id) {
+        mockBookService.delete(id);
+    }
 
+    @PutMapping("")
+    @ResponseBody
+    public void updateBook(@RequestBody Book book) {
+            mockBookService.update(book);
+    }
 
     private boolean isEmpty(String text) {
         return text.isEmpty();

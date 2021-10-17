@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
   "isbn":"9999999",
-  "title":"",
+  "title":"adsgas",
   "author":"McGavren",
   "publisher":"Helion",
   "type":"programming"
@@ -26,3 +26,15 @@ Content-Type: application/json
 DELETE http://localhost:8080/books/4
 
 ###
+
+PUT http://localhost:8080/books
+Content-Type: application/json
+
+{
+  "id": 3,
+  "isbn":"9999999",
+  "title":"adsgas",
+  "author":"McGavren",
+  "publisher":"Helion",
+  "type":"programming"
+}

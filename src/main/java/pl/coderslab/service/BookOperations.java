@@ -9,5 +9,6 @@ public interface BookOperations {
     List<Book> findAll();
     Optional<Book> findById(Long id);
     void add(Book book);
-    void remove(Long id);
+    void delete(Long id);
+    void update(Book book);
 }

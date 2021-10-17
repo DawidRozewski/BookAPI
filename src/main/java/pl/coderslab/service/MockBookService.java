@@ -42,15 +42,19 @@ public class MockBookService implements BookOperations {
     public void add(Book book) {
         book.setId(nextId++);
         bookList.add(book);
-        }
-
-    @Override
-    public void remove(Long id) {
-        if (findById(id).isPresent()) {
-            bookList.removeIf(book -> book.getId().equals(id));
-        }
     }
 
+    @Override
+    public void delete(Long id) {
+        bookList.removeIf(book -> book.getId().equals(id));
+    }
 
+    @Override
+    public void update(Book book) {
+        if (this.findById(book.getId()).isPresent()) {
+            int indexOf = bookList.indexOf(this.findById(book.getId()).get());
+            bookList.set(indexOf, book);
+        }
+    }
 
 }
