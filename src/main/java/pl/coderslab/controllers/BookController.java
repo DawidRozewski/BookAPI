@@ -5,58 +5,56 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.coderslab.model.Book;
-import pl.coderslab.service.MockBookService;
+import pl.coderslab.service.BookOperations;
 
 import java.util.List;
 
-
-@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-@Log
 @RestController
 @RequestMapping("/books")
 public class BookController extends RuntimeException {
 
-    private final MockBookService mockBookService;
+    private final BookOperations bookOperations;
 
-    public BookController(MockBookService mockBookService) {
-        this.mockBookService = mockBookService;
+    public BookController(BookOperations bookOperations) {
+        this.bookOperations = bookOperations;
     }
+
 
     @GetMapping("")
     public List<Book> getAllBooks() {
-        return mockBookService.findAll();
+        return bookOperations.findAll();
     }
 
     @GetMapping("/{id}")
     public Book findById(@PathVariable Long id) throws Exception {
-        return this.mockBookService.findById(id).orElseThrow(() -> new Exception("Brak ksiązki o podanym id"));
+        return this.bookOperations.findById(id).orElseThrow(() -> new Exception("Brak ksiązki o podanym id"));
     }
 
     @PostMapping("")
     public void addBook(@RequestBody Book book) {
-        if (isEmpty(book.getIsbn()) || isEmpty(book.getAuthor())
-                || isEmpty(book.getPublisher()) || isEmpty(book.getTitle()) || isEmpty(book.getType())) {
+        if (isEmpty(book.getIsbn()) || isEmpty(book.getAuthor()) ||
+            isEmpty(book.getPublisher()) || isEmpty(book.getTitle()) || isEmpty(book.getType())) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
                     "All fields must be completed"
             );
         } else {
-            mockBookService.add(book);
+            bookOperations.add(book);
         }
     }
 
     @DeleteMapping("/{id}")
-    public void deleteBook(@PathVariable Long id) {
-        mockBookService.delete(id);
+    public void deleteBook(@PathVariable Long id) throws Exception {
+        bookOperations.delete(id);
     }
 
     @PutMapping("")
     @ResponseBody
     public void updateBook(@RequestBody Book book) {
-            mockBookService.update(book);
+            bookOperations.update(book);
     }
 
     private boolean isEmpty(String text) {
-        return text.isEmpty();
+        return text == null || text.isBlank();
     }
 }
