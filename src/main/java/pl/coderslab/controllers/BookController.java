@@ -1,6 +1,5 @@
 package pl.coderslab.controllers;
 
-import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,7 +26,7 @@ public class BookController extends RuntimeException {
 
     @GetMapping("/{id}")
     public Book findById(@PathVariable Long id) throws Exception {
-        return this.bookOperations.findById(id).orElseThrow(() -> new Exception("Brak ksiązki o podanym id"));
+        return this.bookOperations.findById(id).orElseThrow(() -> new Exception("WRONG BOOK ID"));
     }
 
     @PostMapping("")
@@ -36,7 +35,7 @@ public class BookController extends RuntimeException {
             isEmpty(book.getPublisher()) || isEmpty(book.getTitle()) || isEmpty(book.getType())) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST,
-                    "All fields must be completed"
+                    "ALL FIELDS MUST BE COMPLETED"
             );
         } else {
             bookOperations.add(book);
@@ -49,9 +48,8 @@ public class BookController extends RuntimeException {
     }
 
     @PutMapping("")
-    @ResponseBody
     public void updateBook(@RequestBody Book book) {
-            bookOperations.update(book);
+        bookOperations.update(book);
     }
 
     private boolean isEmpty(String text) {

@@ -1,10 +1,7 @@
 package pl.coderslab.service;
 
-import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 import pl.coderslab.model.Book;
 
@@ -16,7 +13,6 @@ import java.util.Optional;
 @Service
 public class MockBookService implements BookOperations {
     private static Long nextId = 4L;
-
     private List<Book> bookList;
 
     public MockBookService() {
@@ -30,7 +26,7 @@ public class MockBookService implements BookOperations {
 
     @Override
     public List<Book> findAll() {
-        return new ArrayList<>(bookList);
+        return bookList;
     }
 
     @Override
@@ -51,7 +47,7 @@ public class MockBookService implements BookOperations {
         if (this.findById(id).isPresent()) {
             bookList.removeIf(book -> book.getId().equals(id));
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong book id");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "WRONG BOOK ID ");
         }
     }
 
@@ -61,7 +57,7 @@ public class MockBookService implements BookOperations {
             int indexOf = bookList.indexOf(this.findById(book.getId()).get());
             bookList.set(indexOf, book);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong book id");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "WRONG BOOK ID");
         }
     }
 
